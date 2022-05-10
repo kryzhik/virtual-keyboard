@@ -1,7 +1,11 @@
 body {
    background-color: rgb(214,214,214);
    padding: 60px;
+main
    font-family:Materail Icons;
+=======
+   font-family:Materail Icons;
+gh-pages
    
 }
 
@@ -44,7 +48,7 @@ body {
    box-shadow: 5px 5px 5px #474343, -2px -2px 20px #fff;
    border-radius: 10px;
    font-family: poppins, sans-serif;
-   font-size: 18px;
+   font-size: 16px;
    margin-left: 5px;
    outline: none;
    transition: all 0.1s;
@@ -62,22 +66,27 @@ body {
 .backspace, .enter, .capslock, .shift {
    width: 115px;
    border-bottom: 5px;
+   font-size: 16px;
 }
 
 .tab {
    width: 80px;
+   font-size: 16px;
 }
 
 .ctrl {
    width: 90px;
+   font-size: 16px;
 }
 
 .space {
    width: 400px;
+   font-size: 16px;
 }
 
 .capslock {
    position: relative;
+   font-size: 16px;
 }
 
 .round {

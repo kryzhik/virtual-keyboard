@@ -202,14 +202,10 @@ class Keyboard {
            }
         })
      }
-
-     
-  
-
 }
-window.addEventListener('DOMcontentLoaded', ()=> {
+document.addEventListener('DOMContentLoaded', ()=> {
    let a = new Keyboard();
    a.initKeyboard();
-})
+});
 
 
