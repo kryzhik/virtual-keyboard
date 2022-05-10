@@ -176,7 +176,10 @@ class Keyboard {
            if (e.getModifierState('CapsLock')) {
               for (let item of this.keys) {
                  item.textContent.length < 2 ? item.textContent = item.textContent.toUpperCase(): item.textContent = item.textContent;
-                 
+                 let round = document.createElement('div');
+                 round.classList.add('round');
+                 round.classList.add('active');
+                 item.append(round);
               }
            } else {
               for (let item of this.keys) {
