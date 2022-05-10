@@ -120,7 +120,8 @@ class Keyboard {
               break;
            
            case 'ArrowLeft':
-              keyButton.innerHTML = `<i class="large material-icons">keyboard_arrow_left</i>`;
+              keyButton.innerHTML = '&#5130';
+              keyButton.setAttribute('name', 'ArrowLeft');
               keyButton.addEventListener('click', ()=> {
                  const end = this.textfield.selectionEnd;
                  this.textfield.selectionEnd = end - 1;
@@ -128,7 +129,8 @@ class Keyboard {
               });
               break;
               case 'ArrowRight':
-              keyButton.innerHTML = `<i class="large material-icons">keyboard_arrow_right</i>`;
+              keyButton.innerHTML = '&#5125';
+              keyButton.setAttribute('name', 'ArrowRight');
               keyButton.addEventListener('click', ()=> {
                  const end = this.textfield.selectionStart;
                  this.textfield.selectionStart = end + 1;
@@ -136,10 +138,12 @@ class Keyboard {
               });
               break;
               case 'ArrowUp':
-              keyButton.innerHTML = `<i class="large material-icons">keyboard_arrow_left</i>`;
+              keyButton.innerHTML = '&#5123';
+              keyButton.setAttribute('name', 'ArrowUp');
               break;
-              case 'ArrowDawn':
-              keyButton.innerHTML = `<i class="large material-icons">keyboard_arrow_left</i>`;
+              case 'ArrowDown':
+              keyButton.innerHTML = '&#5121';
+              keyButton.setAttribute('name', 'ArrowDown');
               break;
               case 'Backspace':
            keyButton.classList.add('backspace');
@@ -172,7 +176,10 @@ class Keyboard {
            if (e.getModifierState('CapsLock')) {
               for (let item of this.keys) {
                  item.textContent.length < 2 ? item.textContent = item.textContent.toUpperCase(): item.textContent = item.textContent;
-                 
+                 let round = document.createElement('div');
+                 round.classList.add('round');
+                 round.classList.add('active');
+                 item.append(round);
               }
            } else {
               for (let item of this.keys) {
