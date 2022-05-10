@@ -1,12 +1,8 @@
 body {
    background-color: rgb(214,214,214);
    padding: 60px;
-main
-   font-family:Materail Icons;
-=======
-   font-family:Materail Icons;
-gh-pages
-   
+   font-family: poppins, sans-serif;
+  
 }
 
 .main {
@@ -102,4 +98,14 @@ gh-pages
 
 .round.active {
    background-color: blue;
+}
+
+.winType {
+   margin-top: 30px;
+   font-size: 18px;
+}
+
+.langKeys {
+   margin-top: 7px;
+   font-size: 14px;
 }

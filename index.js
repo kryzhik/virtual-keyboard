@@ -4,20 +4,28 @@ class Keyboard {
       this.keyboard = null;
       this.textfield = null;
       this.keys = [];
+      this.language = 'EN';
    }
   initKeyboard() {
-     let main, textfield;
+     let main, winType, langKeys;
      main = document.createElement('div');
      this.keyboard = document.createElement('div');
      this.textfield = document.createElement('textarea');
      this.keyboard.classList.add('keyboard');
      main.classList.add('main');
      this.textfield.classList.add('textfield');
+     winType = document.createElement('div');
+     winType.classList.add('winType');
+     winType.textContent = 'Клавиатура разработана под операционную систему Windows';
+     langKeys = document.createElement('div');
+     langKeys.classList.add('langKeys');
+     langKeys.textContent = 'Для переключения языка нажмите Shift + Alt';
      document.body.append(main);
-     main.append(this.textfield, this.keyboard);
+     main.append(this.textfield, this.keyboard, winType, langKeys);
      this.textfield.setAttribute('cols', '150');
      this.textfield.focus();
-     this.initKeys(); 
+     this.initKeys();
+     this.changeLang(); 
   }
   initKeys() {
         let keyButtons = ['`', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-', '=', 'Backspace', 'Tab', 'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', '[', ']', '\\', 'Delete', 'CapsLock', 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', ';', "'", 'Enter', 'ShiftLeft','\\', 'z', 'x', 'c', 'v', 'b', 'n', 'm', ',', '.', '/', 'ArrowUp', 'ShiftRight', 'ControlLeft', 'Meta', 'Alt', ' ', 'ControlRight', 'ArrowLeft', 'ArrowDown', 'ArrowRight'];
@@ -52,6 +60,7 @@ class Keyboard {
                  round.classList.add('round');
                  round.classList.add('active');
                  keyButton.append(round);
+                 
               } 
               else{
                  for (let item of this.keys) {
@@ -77,16 +86,16 @@ class Keyboard {
            keyButton.classList.add('space');
            
            keyButton.addEventListener('click', ()=> {
-              textfield.value += ' ';
-              textfield.focus();
+              this.textfield.value += ' ';
+              this.textfield.focus();
            });
            break;
 
            case 'Tab':
               keyButton.classList.add('tab');
               keyButton.addEventListener('click', ()=> {
-                 textfield.value += '   ';
-                 textfield.focus();
+                 this.textfield.value += '   ';
+                 this.textfield.focus();
               });
               break;
            case 'ShiftLeft':
@@ -164,6 +173,7 @@ class Keyboard {
         }
            this.keyPress(keyButton);
            
+           
         }) 
   }
 
@@ -195,24 +205,65 @@ class Keyboard {
      }
 
      changeLang(key) {
-        let ruKeys = [ 'й', 'ц', 'у', 'к', 'е', 'н', 'г', 'ш', 'щ', 'з', 'х', 'ъ', 'ф', 'ы', 'в', 'а', 'п', 'р', 'о', 'л', 'д', 'ж', 'э', 'я', 'ч', 'с', 'м', 'и', 'т', 'ь', 'б', 'ю', '.']
-        let flag = false;
-        document.addEventListener('keyup', (e)=> {
-           if (e.code == 'ShiftLeft' || e.code == 'ShiftRight') flag = true ;
-           if (e.code == 'AltLeft' || e.code == 'AltRight') {
-              for (let i = 15; i < this.keys.length; i++) {
-                 if (this.keys[i].textContent.length < 2)
-                 this.keys[i].textContent = ruKeys[i-15];
-              }
-              flag = false;
-              console.log('done')
-           }
+        let ruKeys = [ ['й', 'ц', 'у', 'к', 'е', 'н', 'г', 'ш', 'щ', 'з', 'х', 'ъ'], ['ф', 'ы', 'в', 'а', 'п', 'р', 'о', 'л', 'д', 'ж', 'э'], ['я', 'ч', 'с', 'м', 'и', 'т', 'ь', 'б', 'ю']];
+        let engKeys = [['q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', '[', ']', '\\',], ['a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', ';', "'"],['\\', 'z', 'x', 'c', 'v', 'b', 'n', 'm', ',', '.']];
+        document.addEventListener('keydown', (e)=> {
+             if (e.shiftKey && e.altKey) {
+               if (this.language === 'EN') {
+               
+               for (let i = 15, k = 0; i < 27; i++) {
+                if (this.keys[i].textContent.length === 1)
+                this.keys[i].textContent = ruKeys[0][k];
+                k++;
+             }
+             for (let i = 30, k = 0; i < 42; i++) {
+              if (this.keys[i].textContent.length === 1)
+              this.keys[i].textContent = ruKeys[1][k];
+              k++;
+             }
+             for (let i = 43, k = 0; i < 52; i++) {
+              if (this.keys[i].textContent.length === 1)
+              this.keys[i].textContent = ruKeys[2][k];
+              k++;
+             } 
+             
+             this.language = 'RU';
+             
+            }
+            
+             else  {
+           
+            for (let i = 15, k = 0; i < 27; i++) {
+             if (this.keys[i].textContent.length === 1)
+             this.keys[i].textContent = engKeys[0][k];
+             k++;
+          }
+          for (let i = 30, k = 0; i < 42; i++) {
+           if (this.keys[i].textContent.length === 1)
+           this.keys[i].textContent = engKeys[1][k];
+           k++;
+          }
+          for (let i = 43, k = 0; i < 52; i++) {
+           if (this.keys[i].textContent.length === 1)
+           this.keys[i].textContent = engKeys[2][k];
+           k++;
+          } 
+            this.language = 'EN';
+            
+         };     
+          };
+          
         })
+      
+        
+         
+        
      }
 }
 document.addEventListener('DOMContentLoaded', ()=> {
    let a = new Keyboard();
    a.initKeyboard();
+   
 });
 
 
